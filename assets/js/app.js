@@ -12,6 +12,8 @@ const loadEventListeners = () => {
   collection.addEventListener("click", taskDone);
 
   clearGoals.addEventListener("click", clearTaskList);
+
+  search.addEventListener("keyup", searchGoals);
 };
 
 // Adding goals
@@ -52,13 +54,31 @@ const taskDone = (event) => {
 };
 
 // Clear all goals
-const clearTaskList = () =>{
-  if (confirm("Are you sure?")){
-    while(collection.firstChild){
-      collection.removeChild(collection.firstChild)
+const clearTaskList = () => {
+  if (confirm("Are you sure?")) {
+    while (collection.firstChild) {
+      collection.removeChild(collection.firstChild);
     }
   }
-}
+  0;
+};
+
+// Search Goals
+const searchGoals = (event) => {
+  const text = event.target.value.toLowerCase();
+  const goals = document.querySelectorAll(".collection-item");
+
+  goals.forEach(function (goal) {
+    const item = goal.firstChild.textContent.toLowerCase();
+    
+    if(item.indexOf(text) != -1){
+      goal.style.display = "block";
+    }
+    else {
+        goal.style.display = "none";
+      }
+  });
+};
 
 // Initalizing EventListeners
 loadEventListeners();
