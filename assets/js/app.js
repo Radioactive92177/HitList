@@ -8,6 +8,8 @@ const clearGoals = document.querySelector(".clearGoals");
 // Adding eventListenser
 let loadEventListeners = () => {
   taskForm.addEventListener("submit", addGoals);
+
+  collection.addEventListener("click", taskDone);
 };
 
 // Adding goals
@@ -38,6 +40,13 @@ let addGoals = (event) => {
   }
 
   event.preventDefault();
+};
+
+// Task done, removing task from collection
+let taskDone = (event) => {
+  if (event.target.parentElement.classList.contains("doneLink")) {
+    event.target.parentElement.parentElement.remove();
+  }
 };
 
 // Initalizing EventListeners
