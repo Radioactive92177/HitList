@@ -6,14 +6,16 @@ const collection = document.querySelector(".collection");
 const clearGoals = document.querySelector(".clearGoals");
 
 // Adding eventListenser
-let loadEventListeners = () => {
+const loadEventListeners = () => {
   taskForm.addEventListener("submit", addGoals);
 
   collection.addEventListener("click", taskDone);
+
+  clearGoals.addEventListener("click", clearTaskList);
 };
 
 // Adding goals
-let addGoals = (event) => {
+const addGoals = (event) => {
   if (taskInput.value == "") {
     M.toast({
       html: "Please add your goals first",
@@ -43,11 +45,20 @@ let addGoals = (event) => {
 };
 
 // Task done, removing task from collection
-let taskDone = (event) => {
+const taskDone = (event) => {
   if (event.target.parentElement.classList.contains("doneLink")) {
     event.target.parentElement.parentElement.remove();
   }
 };
+
+// Clear all goals
+const clearTaskList = () =>{
+  if (confirm("Are you sure?")){
+    while(collection.firstChild){
+      collection.removeChild(collection.firstChild)
+    }
+  }
+}
 
 // Initalizing EventListeners
 loadEventListeners();
