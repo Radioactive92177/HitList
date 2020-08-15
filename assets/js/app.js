@@ -14,6 +14,8 @@ const loadEventListeners = () => {
   clearGoals.addEventListener("click", clearTaskList);
 
   search.addEventListener("keyup", searchGoals);
+
+  document.addEventListener("DOMContentLoaded", getGoals);
 };
 
 // Adding goals
@@ -130,5 +132,33 @@ const clearGoalsFromLS = () => {
   localStorage.clear();
 };
 
+// *********** Main program **************
+
+const getGoals = () => {
+  let goals;
+  if (localStorage.getItem("goals") === null) {
+    goals = [];
+  } else {
+    goals = JSON.parse(localStorage.getItem("goals"));
+  }
+
+  // Showing what's in the local storage
+  goals.forEach(function (goal) {
+    // Creating li as Tasks
+    const task = document.createElement("li");
+    task.className = "collection-item";
+
+    // Creating Check ticks as doneLinks
+    const doneLink = document.createElement("a");
+    doneLink.className = "doneLink secondary-content";
+    doneLink.innerHTML =
+      '<i class="material-icons red-text">delete_forever</i>';
+
+    // Appending Parent child
+    task.appendChild(document.createTextNode(goal));
+    task.appendChild(doneLink);
+    collection.appendChild(task);
+  });
+};
 // Initalizing EventListeners
 loadEventListeners();
