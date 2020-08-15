@@ -163,13 +163,12 @@ const getGoals = () => {
       goalData[`${goal}`] = null;
     });
 
-    console.log(goalData);
     var elems = document.querySelectorAll(".autocomplete");
-    console.log(elems);
+
     M.Autocomplete.init(elems, {
       data: goalData,
       minLength: 0,
-      limit:1
+      limit: 1,
     });
   });
 };
