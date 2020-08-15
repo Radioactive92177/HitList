@@ -157,6 +157,20 @@ const getGoals = () => {
     task.appendChild(document.createTextNode(goal));
     task.appendChild(doneLink);
     collection.appendChild(task);
+
+    let goalData = {};
+    goals.forEach(function (goal) {
+      goalData[`${goal}`] = null;
+    });
+
+    console.log(goalData);
+    var elems = document.querySelectorAll(".autocomplete");
+    console.log(elems);
+    M.Autocomplete.init(elems, {
+      data: goalData,
+      minLength: 0,
+      limit:1
+    });
   });
 };
 // Initalizing EventListeners
