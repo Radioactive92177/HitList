@@ -56,10 +56,10 @@ const addGoals = (event) => {
 const taskDone = (event) => {
   if (event.target.parentElement.classList.contains("doneLink")) {
     event.target.parentElement.parentElement.remove();
-  }
 
-  // Remove done goal from local storage
-  removeGoalFromLS(event.target.parentElement.parentElement);
+    // Remove done goal from local storage
+    removeGoalFromLS(event.target.parentElement.parentElement);
+  }
 };
 
 // Clear all goals
@@ -110,16 +110,15 @@ const storeInLS = (goalsList) => {
 };
 
 // Remove goal from goalsList in local storage
-const removeGoalsFromLS = (goalItem) => {
+const removeGoalFromLS = (goalItem) => {
   let goals;
   if (localStorage.getItem("goals") === null) {
     goals = [];
   } else {
     goals = JSON.parse(localStorage.getItem("goals"));
   }
-
   goals.forEach(function (goal, index) {
-    if (goalItem.textContent === goal) {
+    if (goalItem.firstChild.textContent == goal) {
       goals.splice(index, 1);
     }
   });
