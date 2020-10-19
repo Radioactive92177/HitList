@@ -5,6 +5,8 @@ const search = document.querySelector("#search");
 const collection = document.querySelector(".collection");
 const clearGoals = document.querySelector(".clearGoals");
 
+var d = new Date();
+
 // Adding eventListenser
 const loadEventListeners = () => {
   taskForm.addEventListener("submit", addGoals);
@@ -37,10 +39,18 @@ const addGoals = (event) => {
     doneLink.innerHTML =
       '<i class="material-icons red-text">delete_forever</i>';
 
+    // adding Time 
+    const time = document.createElement("a");
+    time.className = "time secondary-content";
+    time.innerHTML = d.toUTCString();
+      //'<i class="material-icons red-text">delete_forever</i>';
+
+
     // Appending Parent child
     task.appendChild(document.createTextNode(taskInput.value));
     task.appendChild(doneLink);
     collection.appendChild(task);
+    task.appendChild(time);
 
     // Store in local Storage
     storeInLS(taskInput.value);
