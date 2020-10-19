@@ -1,3 +1,6 @@
+
+![Screenshot](screenshot.png)
+
 # Hit List
 
 Hit List is a basic web app which serves the purpose of managing your **daily goals**
